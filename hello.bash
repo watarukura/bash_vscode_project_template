@@ -2,7 +2,7 @@
 
 set -xv
 
-main() {
+function main() {
     local name=$1
     echo "Hello, ${name:-world}!"
 }
