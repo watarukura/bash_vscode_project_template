@@ -1,11 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env import
 
 set -euo pipefail
 
-function err() {
-    echo "[$(date +'%Y-%m-%dT%H:%M:%S%z') line:${BASH_LINENO[0]}]: $*" >&2
-    exit 1
-}
+import "https://raw.githubusercontent.com/watarukura/bash_vscode_project_template/master/functions.bash"
 
 function main() {
     (( "$#" >= 2 )) && err "too many args count: $#"
@@ -13,4 +10,5 @@ function main() {
     echo "Hello, ${name:-world}!"
 }
 
+# sourceから読み込まれた場合は実行しない
 [[ "${BASH_SOURCE[0]}" == "$0" ]] && main "$@"

@@ -13,3 +13,5 @@ jobs:
           path: "." # Optional.
           pattern: "*.bash" # Optional.
           exclude: "./.git/*" # Optional.
+          shellcheck_flags: "-e SC1008" # shebangにimportを使用するため
+
