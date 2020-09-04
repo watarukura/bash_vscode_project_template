@@ -10,7 +10,7 @@ import "https://raw.githubusercontent.com/watarukura/bash_vscode_project_templat
 function main() {
     (("$#" >= 2)) && err "too many args count: $#"
     [[ "$#" == 1 ]] && declare -r name=$1
-    echo "Hello, ${name:-world}!"
+    echo "Hello, ${name:-world}!" > "${tmp_dir}"/hello
 }
 
 # sourceから読み込まれた場合は実行しない
