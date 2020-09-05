@@ -8,7 +8,7 @@ source /usr/local/bin/import
 import "https://raw.githubusercontent.com/watarukura/bash_vscode_project_template/master/functions.bash"
 
 function main() {
-    (("$#" >= 2)) && err "too many args count: $#"
+    (("$#" >= 2)) && error_exit "too many args count: $#"
     [[ "$#" == 1 ]] && declare -r name=$1
     echo "Hello, ${name:-world}!" > "${tmp_dir}"/hello
 }
