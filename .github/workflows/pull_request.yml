@@ -13,3 +13,4 @@ jobs:
           path: "." # Optional.
           pattern: "*.bash" # Optional.
           exclude: "./.git/*" # Optional.
+
