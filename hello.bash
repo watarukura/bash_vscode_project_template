@@ -8,7 +8,7 @@ import "https://raw.githubusercontent.com/watarukura/bash_vscode_project_templat
 # debug用
 # source ./functions.bash
 declare -r tmp_dir
-export tmp_dir="$(tempdir)"
+tmp_dir="$(tempdir)"
 
 function main() {
     logger_info "start"

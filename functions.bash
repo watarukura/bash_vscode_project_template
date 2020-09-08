@@ -28,7 +28,7 @@ function logger_info() {
 }
 
 function tempdir() {
-    mktemp -d "$(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX"
+    mktemp -d "$(basename ${0})"."$(date '+%Y%m%d%H%M%S')"."XXXXXX"
 }
 
 # エラー終了
