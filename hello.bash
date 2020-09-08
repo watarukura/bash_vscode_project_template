@@ -3,7 +3,7 @@
 set -euo pipefail
 
 source ./functions.bash
-# shellcheck disable=SC2034
+# shellcheck disable=SC2034,SC2155
 declare -r tmp_dir="$(tempdir)"
 
 function main() {

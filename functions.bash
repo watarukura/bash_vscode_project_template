@@ -8,10 +8,13 @@ function error_exit() {
 }
 
 function logger() {
+    # shellcheck disable=SC2155
     declare -r date=$(date +'%Y-%m-%dT%H:%M:%S%z')
     declare -r line=${_log_line:-${BASH_LINENO[0]}}
     declare -r level=${_log_level:-"INFO"}
+    # shellcheck disable=SC2001,SC2155
     declare -r message=$(echo "$*" | sed -e 's/"/\\"/g')
+    # shellcheck disable=SC2086,SC2155
     declare -r log_file="$(pwd)/log/$(basename ${0}).jsonl"
     
     cat <<EOF | tee -a ${log_file}
