@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+#
+# Say Hello
 
 set -euo pipefail
 
@@ -8,7 +10,7 @@ declare -r tmp_dir="$(tempdir)"
 
 function main() {
     logger_info "start"
-    (("$#" >= 2)) && error_exit "too many args count: expect \"0-1\", actual $#"
+    (("$#" >= 2)) && error_exit "too many args count: expect \"0-1\", actual \"$#\""
     [[ "$#" == 1 ]] && declare -r name=$1
     logger_info "Hello, ${name:-world}!"
     logger_info "end"

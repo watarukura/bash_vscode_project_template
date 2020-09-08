@@ -1,3 +1,12 @@
+#######################################
+# Exit with error
+# Globals:
+#   tmp_dir
+# Arguments:
+#   Any
+# Returns:
+#   1
+#######################################
 function error_exit() {
     _log_level="ERROR" _log_line=${BASH_LINENO[0]} logger "$@"
     
@@ -7,11 +16,29 @@ function error_exit() {
     exit 1
 }
 
+#######################################
+# Exit
+# Globals:
+#   tmp_dir
+# Arguments:
+#   Any
+# Returns:
+#   0
+#######################################
 function normal_exit() {
     rm -rf "${tmp_dir}"
     exit 0
 }
 
+#######################################
+# Logger
+# Globals:
+#   None
+# Arguments:
+#   Any
+# Outputs:
+#   Write JSON format Log to STDOUT
+#######################################
 function logger() {
     # shellcheck disable=SC2155
     declare -r date=$(date +'%Y-%m-%dT%H:%M:%S%z')
@@ -27,10 +54,28 @@ function logger() {
 EOF
 }
 
+#######################################
+# Call Logger with log level INFO
+# Globals:
+#   None
+# Arguments:
+#   Any
+# Returns:
+#   None
+#######################################
 function logger_info() {
     _log_level="INFO" _log_line=${BASH_LINENO[0]} logger "$@"
 }
 
+#######################################
+# Make Temporary Directory
+# Globals:
+#   None
+# Arguments:
+#   None
+# Outputs:
+#   Temporary Directory Name to STDOUT
+#######################################
 function tempdir() {
     # shellcheck disable=SC2086
     mktemp -d "$(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX"
