@@ -1,18 +1,21 @@
 function error_exit() {
-    declare -r log_dir=$(pwd)/log
     _log_level="ERROR" _log_line=${BASH_LINENO[0]} logger "$@"
+    
+    declare -r log_dir=$(pwd)/log
     mv "${tmp_dir}" "${log_dir}"
     exit 1
 }
 
 function logger() {
-    # shellcheck disable=SC2155
-    declare -r date=$(date +'%Y-%m-%dT%H:%M:%S%z')
+    declare -r date
+    date=$(date +'%Y-%m-%dT%H:%M:%S%z')
     declare -r line=${_log_line:-${BASH_LINENO[0]}}
     declare -r level=${_log_level:-"INFO"}
-    # shellcheck disable=SC2001
-    declare -r message=$(echo "$*" | sed -e 's/"/\\"/g')
-    declare -r log_file="$(pwd)/log/$(basename ${0}).jsonl"
+    declare -r message
+    message=$(echo "$*" | sed -e 's/"/\\"/g')
+    declare -r log_file
+    log_file="$(pwd)/log/$(basename ${0}).jsonl"
+    
     cat <<EOF | tee -a ${log_file}
 {"date":"${date}","line":${line},"level":"${level}","message":"${message}"}
 EOF
@@ -23,8 +26,7 @@ function logger_info() {
 }
 
 function tempdir() {
-    declare -r tmp_dir="$(mktemp -d $(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX)"
-    echo "${tmp_dir}"
+    mktemp -d $(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX
 }
 
 # エラー終了
