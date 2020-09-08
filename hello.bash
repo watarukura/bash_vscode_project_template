@@ -2,13 +2,13 @@
 
 set -euo pipefail
 
+source ./constants.bash
+
 # shellcheck disable=SC1091
 # source /usr/local/bin/import
 # import "https://raw.githubusercontent.com/watarukura/bash_vscode_project_template/master/functions.bash"
-
 # debug用
 source ./functions.bash
-source ./constants.bash
 
 function main() {
     logging "start"
