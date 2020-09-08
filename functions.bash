@@ -8,7 +8,7 @@ function error_exit() {
 }
 
 function normal_exit() {
-    rm -rf ${tmp_dir}/
+    rm -rf "${tmp_dir}"
     exit 0
 }
 
