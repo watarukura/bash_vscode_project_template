@@ -7,7 +7,6 @@ source /usr/local/bin/import
 import "https://raw.githubusercontent.com/watarukura/bash_vscode_project_template/master/functions.bash"
 # debug用
 # source ./functions.bash
-# shellcheck disable=SC2034,SC2155
 declare -r tmp_dir="$(tempdir)"
 
 function main() {

@@ -1,7 +1,8 @@
 function error_exit() {
     _log_level="ERROR" _log_line=${BASH_LINENO[0]} logger "$@"
     
-    declare -r log_dir=$(pwd)/log
+    declare -r log_dir
+    log_dir=$(pwd)/log
     mv "${tmp_dir}" "${log_dir}"
     exit 1
 }
@@ -12,6 +13,7 @@ function logger() {
     declare -r line=${_log_line:-${BASH_LINENO[0]}}
     declare -r level=${_log_level:-"INFO"}
     declare -r message
+    # shellcheck disable=SC2001
     message=$(echo "$*" | sed -e 's/"/\\"/g')
     declare -r log_file
     log_file="$(pwd)/log/$(basename ${0}).jsonl"
@@ -26,7 +28,7 @@ function logger_info() {
 }
 
 function tempdir() {
-    mktemp -d $(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX
+    mktemp -d "$(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX"
 }
 
 # エラー終了
