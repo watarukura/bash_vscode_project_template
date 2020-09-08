@@ -12,6 +12,8 @@ function main() {
     [[ "$#" == 1 ]] && declare -r name=$1
     logger_info "Hello, ${name:-world}!"
     logger_info "end"
+    
+    normal_exit
 }
 
 # sourceから読み込まれた場合は実行しない

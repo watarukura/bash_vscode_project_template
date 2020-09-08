@@ -7,6 +7,11 @@ function error_exit() {
     exit 1
 }
 
+function normal_exit() {
+    rm -rf ${tmp_dir}/
+    exit 0
+}
+
 function logger() {
     # shellcheck disable=SC2155
     declare -r date=$(date +'%Y-%m-%dT%H:%M:%S%z')
