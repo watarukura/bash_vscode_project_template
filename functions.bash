@@ -23,7 +23,7 @@ function logger_info() {
 }
 
 function tempdir() {
-    declare -r tmp_dir=$(mktemp -d $(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX)
+    declare -r tmp_dir="$(mktemp -d $(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX)"
     echo "${tmp_dir}"
 }
 
