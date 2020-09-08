@@ -2,14 +2,9 @@
 
 set -euo pipefail
 
-# shellcheck disable=SC1091
-source /usr/local/bin/import
-import "https://raw.githubusercontent.com/watarukura/bash_vscode_project_template/master/functions.bash"
-# debug用
-# source ./functions.bash
-declare -r tmp_dir
+source ./functions.bash
 # shellcheck disable=SC2034
-tmp_dir="$(tempdir)"
+declare -r tmp_dir="$(tempdir)"
 
 function main() {
     logger_info "start"
