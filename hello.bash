@@ -6,7 +6,7 @@ set -euo pipefail
 
 source ./functions.bash
 # shellcheck disable=SC2034,SC2155
-declare -r tmp_dir="$(tempdir)"
+declare -r TMP_DIR="$(tempdir)"
 
 function main() {
     logger_info "start"
@@ -14,8 +14,6 @@ function main() {
     [[ "$#" == 1 ]] && declare -r name=$1
     logger_info "Hello, ${name:-world}!"
     logger_info "end"
-    
-    normal_exit
 }
 
 # sourceから読み込まれた場合は実行しない

@@ -1,32 +1,32 @@
 #######################################
-# Exit with error
+# Exit with Error
 # Globals:
-#   tmp_dir
+#   TMP_DIR
 # Arguments:
 #   Any
 # Returns:
 #   1
 #######################################
 function error_exit() {
-    _log_level="ERROR" _log_line=${BASH_LINENO[0]} logger "$@"
+    _log_level="ERROR" _log_line=${BASH_LINENO[0]} _logger "$@"
     
     # shellcheck disable=SC2155
     declare -r log_dir=$(pwd)/log
-    mv "${tmp_dir}" "${log_dir}"
+    mv "${TMP_DIR}" "${log_dir}"
     exit 1
 }
 
 #######################################
-# Exit
+# Exit with Remove Temporary Direcotry
 # Globals:
-#   tmp_dir
+#   TMP_DIR
 # Arguments:
 #   Any
 # Returns:
 #   0
 #######################################
 function normal_exit() {
-    rm -rf "${tmp_dir}"
+    rm -rf "${TMP_DIR}"
     exit 0
 }
 
@@ -39,7 +39,7 @@ function normal_exit() {
 # Outputs:
 #   Write JSON format Log to STDOUT
 #######################################
-function logger() {
+function _logger() {
     # shellcheck disable=SC2155
     declare -r date=$(date +'%Y-%m-%dT%H:%M:%S%z')
     declare -r line=${_log_line:-${BASH_LINENO[0]}}
@@ -64,7 +64,7 @@ EOF
 #   None
 #######################################
 function logger_info() {
-    _log_level="INFO" _log_line=${BASH_LINENO[0]} logger "$@"
+    _log_level="INFO" _log_line=${BASH_LINENO[0]} _logger "$@"
 }
 
 #######################################
@@ -83,3 +83,6 @@ function tempdir() {
 
 # エラー終了
 trap 'error_exit "強制終了"' 1 2 3 15
+
+# 正常終了
+trap 'normal_exit "正常終了"' 0
