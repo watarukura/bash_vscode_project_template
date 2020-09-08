@@ -28,7 +28,8 @@ function logger_info() {
 }
 
 function tempdir() {
-    mktemp -d "$(basename ${0})"."$(date '+%Y%m%d%H%M%S')"."XXXXXX"
+    # shellcheck disable=SC2086
+    mktemp -d "$(basename ${0}).$(date '+%Y%m%d%H%M%S').XXXXXX"
 }
 
 # エラー終了
