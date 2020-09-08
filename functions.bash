@@ -1,8 +1,8 @@
 function error_exit() {
     _log_level="ERROR" _log_line=${BASH_LINENO[0]} logger "$@"
     
-    declare -r log_dir
-    log_dir=$(pwd)/log
+    # shellcheck disable=SC2155
+    declare -r log_dir=$(pwd)/log
     mv "${tmp_dir}" "${log_dir}"
     exit 1
 }
